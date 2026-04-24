@@ -83,9 +83,9 @@ begin
   PanelFooter.Color := TNavBarColors.Background;
 
   LabelAppName.Font.Color := clWhite;
-  LabelAppVersion.Font.Color := clWhite;
+  LabelAppVersion.Font.Color := TNavBarColors.SecondaryFont;
   LabelUserName.Font.Color := clWhite;
-  LabelPersonName.Font.Color := clWhite;
+  LabelPersonName.Font.Color := TNavBarColors.SecondaryFont;
 
   ScrollHeader.Color := TNavBarColors.Background;
   ScrollNavBar.Color := TNavBarColors.Background;

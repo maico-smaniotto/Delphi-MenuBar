@@ -29,7 +29,6 @@ object NavBar: TNavBar
     Padding.Right = 20
     ParentColor = False
     TabOrder = 0
-    UseWheelForScrolling = True
     OnMouseWheel = ScrollNavBarMouseWheel
   end
   object ScrollFooter: TPanel
@@ -48,9 +47,6 @@ object NavBar: TNavBar
     Locked = True
     ParentBackground = False
     TabOrder = 1
-    ExplicitLeft = 8
-    ExplicitTop = 380
-    ExplicitWidth = 266
     object ScrollButtonDown: TShape
       Left = 8
       Top = 0
@@ -217,9 +213,6 @@ object NavBar: TNavBar
     Locked = True
     ParentBackground = False
     TabOrder = 4
-    ExplicitLeft = 7
-    ExplicitTop = 80
-    ExplicitWidth = 266
     object ScrollButtonUp: TShape
       Left = 8
       Top = 0
