@@ -13,6 +13,7 @@ type
     class var FMenuItemBackgroundSelected: TColor;
     class var FMenuItemFont: TColor;
     class var FMenuItemFontSelected: TColor;
+    class var FSecondaryFont: TColor;
 
     class procedure LoadColors; static;
   public
@@ -21,6 +22,7 @@ type
     class property MenuItemFont: TColor read FMenuItemFont;
     class property MenuItemBackgroundSelected: TColor read FMenuItemBackgroundSelected;
     class property MenuItemFontSelected: TColor read FMenuItemFontSelected;
+    class property SecondaryFont: TColor read FSecondaryFont;
   end;
 
 implementation
@@ -42,6 +44,8 @@ begin
   FMenuItemFont := RGB(255, 255, 255);
 
   FMenuItemFontSelected := RGB(0, 0, 0);
+
+  FSecondaryFont := RGB(100, 100, 100);
 end;
 
 initialization

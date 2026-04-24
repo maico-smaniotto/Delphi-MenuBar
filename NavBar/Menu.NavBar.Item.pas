@@ -62,6 +62,7 @@ begin
   TShape(Sender).Brush.Color := TNavBarColors.MenuItemBackgroundSelected;
   TShape(Sender).Pen.Color := TNavBarColors.MenuItemBackgroundSelected;
 
+  LabelItem.Color := TNavBarColors.MenuItemBackgroundSelected;
   LabelItem.Font.Color := TNavBarColors.MenuItemFontSelected;
 end;
 
@@ -70,6 +71,7 @@ begin
   TShape(Sender).Brush.Color := TNavBarColors.MenuItemBackground;
   TShape(Sender).Pen.Color := TNavBarColors.MenuItemBackground;
 
+  LabelItem.Color := TNavBarColors.MenuItemBackground;
   LabelItem.Font.Color := TNavBarColors.MenuItemFont;
 end;
 

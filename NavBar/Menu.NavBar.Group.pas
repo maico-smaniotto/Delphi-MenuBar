@@ -167,7 +167,11 @@ begin
   TShape(Sender).Brush.Color := TNavBarColors.MenuItemBackgroundSelected;
   TShape(Sender).Pen.Color := TNavBarColors.MenuItemBackgroundSelected;
 
+  MenuBarGroupButtonLabel.Color := TNavBarColors.MenuItemBackgroundSelected;
   MenuBarGroupButtonLabel.Font.Color := TNavBarColors.MenuItemFontSelected;
+
+  LabelArrow.Color := TNavBarColors.MenuItemBackgroundSelected;
+  LabelArrow.Font.Color := TNavBarColors.MenuItemFontSelected;
 end;
 
 procedure TNavBarGroup.ShapeMenuBarGroupButtonMouseLeave(Sender: TObject);
@@ -175,7 +179,11 @@ begin
   TShape(Sender).Brush.Color := TNavBarColors.MenuItemBackground;
   TShape(Sender).Pen.Color := TNavBarColors.MenuItemBackground;
 
+  MenuBarGroupButtonLabel.Color := TNavBarColors.MenuItemBackground;
   MenuBarGroupButtonLabel.Font.Color := TNavBarColors.MenuItemFont;
+
+  LabelArrow.Color := TNavBarColors.MenuItemBackground;
+  LabelArrow.Font.Color := TNavBarColors.SecondaryFont;
 end;
 
 procedure TNavBarGroup.SetExpanded(const Value: Boolean);
