@@ -1,0 +1,59 @@
+object NavBarItem: TNavBarItem
+  Left = 0
+  Top = 0
+  Width = 280
+  Height = 36
+  Color = clWhite
+  ParentBackground = False
+  ParentColor = False
+  TabOrder = 0
+  object pnlMenuGroupHeader: TPanel
+    AlignWithMargins = True
+    Left = 0
+    Top = 0
+    Width = 280
+    Height = 36
+    Margins.Left = 0
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    Align = alTop
+    Alignment = taLeftJustify
+    BevelOuter = bvNone
+    Caption = 'Clientes'
+    Locked = True
+    ParentColor = True
+    TabOrder = 0
+    object ShapeItemBackground: TShape
+      Left = 0
+      Top = 0
+      Width = 280
+      Height = 36
+      Align = alClient
+      Brush.Color = 15986415
+      Pen.Color = 15986415
+      Shape = stRoundRect
+      OnMouseDown = ShapeItemBackgroundMouseDown
+      OnMouseEnter = ShapeItemBackgroundMouseEnter
+      OnMouseLeave = ShapeItemBackgroundMouseLeave
+      ExplicitWidth = 183
+      ExplicitHeight = 35
+    end
+    object LabelItem: TLabel
+      Left = 24
+      Top = 10
+      Width = 27
+      Height = 15
+      Caption = 'Item'
+      Color = clDefault
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 5456182
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      OnClick = LabelItemClick
+    end
+  end
+end
