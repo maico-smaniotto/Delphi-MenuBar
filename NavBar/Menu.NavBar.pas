@@ -92,6 +92,8 @@ begin
   ScrollBar.Color := TNavBarColors.Background;
   ScrollFooter.Color := TNavBarColors.Background;
 
+  ScrollNavBar.UseWheelForScrolling := True;
+
   FGroups := TNavBarGroupCollection.Create;
   ShowScrollBar(ScrollNavBar.Handle, SB_VERT, True);
 end;

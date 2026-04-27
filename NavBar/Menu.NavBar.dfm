@@ -243,9 +243,9 @@ object NavBar: TNavBar
     end
   end
   object ScrollBar: TPanel
-    Left = 259
+    Left = 261
     Top = 93
-    Width = 22
+    Width = 20
     Height = 288
     Anchors = [akLeft, akTop, akRight]
     BevelOuter = bvNone

@@ -1,23 +1,27 @@
 object NavBarItem: TNavBarItem
+  AlignWithMargins = True
   Left = 0
   Top = 0
   Width = 280
-  Height = 36
+  Height = 34
+  Margins.Left = 16
+  Margins.Top = 0
+  Margins.Right = 0
+  Margins.Bottom = 0
   Color = clWhite
   ParentBackground = False
   ParentColor = False
   TabOrder = 0
   object pnlMenuGroupHeader: TPanel
-    AlignWithMargins = True
     Left = 0
     Top = 0
     Width = 280
-    Height = 36
+    Height = 34
     Margins.Left = 0
     Margins.Top = 0
     Margins.Right = 0
     Margins.Bottom = 0
-    Align = alTop
+    Align = alClient
     Alignment = taLeftJustify
     BevelOuter = bvNone
     Caption = 'Clientes'
@@ -28,7 +32,7 @@ object NavBarItem: TNavBarItem
       Left = 0
       Top = 0
       Width = 280
-      Height = 36
+      Height = 34
       Align = alClient
       Brush.Color = 15986415
       Pen.Color = 15986415
@@ -36,12 +40,10 @@ object NavBarItem: TNavBarItem
       OnMouseDown = ShapeItemBackgroundMouseDown
       OnMouseEnter = ShapeItemBackgroundMouseEnter
       OnMouseLeave = ShapeItemBackgroundMouseLeave
-      ExplicitWidth = 183
-      ExplicitHeight = 35
     end
     object LabelItem: TLabel
       Left = 24
-      Top = 10
+      Top = 9
       Width = 27
       Height = 15
       Caption = 'Item'
@@ -54,6 +56,8 @@ object NavBarItem: TNavBarItem
       ParentColor = False
       ParentFont = False
       OnClick = LabelItemClick
+      OnMouseEnter = LabelItemMouseEnter
+      OnMouseLeave = LabelItemMouseLeave
     end
   end
 end

@@ -21,8 +21,13 @@ type
     procedure LabelItemClick(Sender: TObject);
     procedure ShapeItemBackgroundMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure LabelItemMouseEnter(Sender: TObject);
+    procedure LabelItemMouseLeave(Sender: TObject);
   private
     FOnClick: TNavBarItemClickEvent;
+    procedure DrawSelection;
+    procedure HideSelection;
+    procedure DoClick;
   public
     property OnClick: TNavBarItemClickEvent read FOnClick write FOnClick;
     constructor Create(AOwner: TComponent); reintroduce; override;
@@ -43,36 +48,60 @@ begin
   LabelItem.Font.Color := TNavBarColors.MenuItemFont;
 end;
 
-procedure TNavBarItem.LabelItemClick(Sender: TObject);
+procedure TNavBarItem.DoClick;
 begin
   if Assigned(FOnClick) then
     FOnClick(Self);
+end;
+
+procedure TNavBarItem.DrawSelection;
+begin
+  ShapeItemBackground.Brush.Color := TNavBarColors.MenuItemBackgroundSelected;
+  ShapeItemBackground.Pen.Color := TNavBarColors.MenuItemBackgroundSelected;
+
+  LabelItem.Color := TNavBarColors.MenuItemBackgroundSelected;
+  LabelItem.Font.Color := TNavBarColors.MenuItemFontSelected;
+end;
+
+procedure TNavBarItem.HideSelection;
+begin
+  ShapeItemBackground.Brush.Color := TNavBarColors.MenuItemBackground;
+  ShapeItemBackground.Pen.Color := TNavBarColors.MenuItemBackground;
+
+  LabelItem.Color := TNavBarColors.MenuItemBackground;
+  LabelItem.Font.Color := TNavBarColors.MenuItemFont;
+end;
+
+procedure TNavBarItem.LabelItemClick(Sender: TObject);
+begin
+  DoClick;
+end;
+
+procedure TNavBarItem.LabelItemMouseEnter(Sender: TObject);
+begin
+  DrawSelection;
+end;
+
+procedure TNavBarItem.LabelItemMouseLeave(Sender: TObject);
+begin
+  HideSelection;
 end;
 
 procedure TNavBarItem.ShapeItemBackgroundMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
   if Button = mbLeft then
-    if Assigned(FOnClick) then
-      FOnClick(Self);
+    DoClick;
 end;
 
 procedure TNavBarItem.ShapeItemBackgroundMouseEnter(Sender: TObject);
 begin
-  TShape(Sender).Brush.Color := TNavBarColors.MenuItemBackgroundSelected;
-  TShape(Sender).Pen.Color := TNavBarColors.MenuItemBackgroundSelected;
-
-  LabelItem.Color := TNavBarColors.MenuItemBackgroundSelected;
-  LabelItem.Font.Color := TNavBarColors.MenuItemFontSelected;
+  DrawSelection;
 end;
 
 procedure TNavBarItem.ShapeItemBackgroundMouseLeave(Sender: TObject);
 begin
-  TShape(Sender).Brush.Color := TNavBarColors.MenuItemBackground;
-  TShape(Sender).Pen.Color := TNavBarColors.MenuItemBackground;
-
-  LabelItem.Color := TNavBarColors.MenuItemBackground;
-  LabelItem.Font.Color := TNavBarColors.MenuItemFont;
+  HideSelection;
 end;
 
 end.

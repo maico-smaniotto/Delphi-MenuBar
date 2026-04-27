@@ -23,10 +23,11 @@ type
   end;
 
   TNavBarGroup = class(TFrame)
-    MenuBarGroupButton: TPanel;
+    GroupHeader: TPanel;
     ShapeMenuBarGroupButton: TShape;
     MenuBarGroupButtonLabel: TLabel;
     LabelArrow: TLabel;
+    GroupContent: TPanel;
     procedure ShapeMenuBarGroupButtonMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure MenuBarGroupButtonLabelClick(Sender: TObject);
     procedure ShapeMenuBarGroupButtonMouseEnter(Sender: TObject);
@@ -37,7 +38,9 @@ type
   private
     FExpanded: Boolean;
     FItems: TNavBarItemCollection;
-    FTotalHeight: Integer;
+    FContentTotalHeight: Integer;
+    procedure DrawSelection;
+    procedure HideSelection;
     procedure DoClick;
     procedure SetExpanded(const Value: Boolean);
     procedure ArrangeItems;
@@ -59,36 +62,41 @@ implementation
 
 function TNavBarGroup.AddItem: TNavBarItem;
 begin
-  Result := TNavBarItem.Create(Self);
+  Result := TNavBarItem.Create(GroupContent);
   Result.Name := 'MenuBarItem' + (FItems.Count + 1).ToString;
-  Result.Parent := Self;
+  Result.Parent := GroupContent;
   FItems.AddItem(Result);
   ArrangeItems;
 end;
 
 procedure TNavBarGroup.AdjustHeight;
 begin
+  var LGroupHeight := GroupHeader.Height + Padding.Top + Padding.Bottom;
+
   if FExpanded then
-    Height := FTotalHeight
-  else
-    Height := MenuBarGroupButton.Height + Padding.Top + Padding.Bottom;
+    LGroupHeight := LGroupHeight + FContentTotalHeight;
+
+  Self.Height := LGroupHeight;
 end;
 
 procedure TNavBarGroup.ArrangeItems;
 begin
   var ItemVertSpace := 2;
-  var ItemTop := MenuBarGroupButton.Top + MenuBarGroupButton.Height + Padding.Top + Padding.Bottom;
+  var ItemTop := 0;
 
   for var I := 0 to FItems.Count - 1 do
   begin
+    if I = 0 then
+      ItemTop := GroupContent.Padding.Top;
+
     var Item := FItems[I];
     Item.Top := ItemTop;
-    Item.Left := Padding.Left;
-    Item.Width := Width - Padding.Left - Padding.Right;
+    Item.Left := GroupContent.Padding.Left;
+    Item.Width := GroupContent.Width - GroupContent.Padding.Left - GroupContent.Padding.Right;
 
     Inc(ItemTop, Item.Height + ItemVertSpace);
   end;
-  FTotalHeight := ItemTop;
+  FContentTotalHeight := ItemTop;
   AdjustHeight;
 end;
 
@@ -127,11 +135,35 @@ begin
     Expand;
 end;
 
+procedure TNavBarGroup.DrawSelection;
+begin
+  ShapeMenuBarGroupButton.Brush.Color := TNavBarColors.MenuItemBackgroundSelected;
+  ShapeMenuBarGroupButton.Pen.Color := TNavBarColors.MenuItemBackgroundSelected;
+
+  MenuBarGroupButtonLabel.Color := TNavBarColors.MenuItemBackgroundSelected;
+  MenuBarGroupButtonLabel.Font.Color := TNavBarColors.MenuItemFontSelected;
+
+  LabelArrow.Color := TNavBarColors.MenuItemBackgroundSelected;
+  LabelArrow.Font.Color := TNavBarColors.MenuItemFontSelected;
+end;
+
 procedure TNavBarGroup.Expand;
 begin
   FExpanded := True;
   LabelArrow.Caption := 'v';
   AdjustHeight;
+end;
+
+procedure TNavBarGroup.HideSelection;
+begin
+  ShapeMenuBarGroupButton.Brush.Color := TNavBarColors.MenuItemBackground;
+  ShapeMenuBarGroupButton.Pen.Color := TNavBarColors.MenuItemBackground;
+
+  MenuBarGroupButtonLabel.Color := TNavBarColors.MenuItemBackground;
+  MenuBarGroupButtonLabel.Font.Color := TNavBarColors.MenuItemFont;
+
+  LabelArrow.Color := TNavBarColors.MenuItemBackground;
+  LabelArrow.Font.Color := TNavBarColors.SecondaryFont;
 end;
 
 procedure TNavBarGroup.LabelArrowClick(Sender: TObject);
@@ -146,44 +178,28 @@ end;
 
 procedure TNavBarGroup.MenuBarGroupButtonLabelMouseEnter(Sender: TObject);
 begin
-  ShapeMenuBarGroupButtonMouseEnter(ShapeMenuBarGroupButton);
+  DrawSelection;
 end;
 
 procedure TNavBarGroup.MenuBarGroupButtonLabelMouseLeave(Sender: TObject);
 begin
-  ShapeMenuBarGroupButtonMouseLeave(ShapeMenuBarGroupButton);
+  HideSelection;
 end;
 
 procedure TNavBarGroup.ShapeMenuBarGroupButtonMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   if Button = mbLeft then
-  begin
     DoClick;
-  end;
 end;
 
 procedure TNavBarGroup.ShapeMenuBarGroupButtonMouseEnter(Sender: TObject);
 begin
-  TShape(Sender).Brush.Color := TNavBarColors.MenuItemBackgroundSelected;
-  TShape(Sender).Pen.Color := TNavBarColors.MenuItemBackgroundSelected;
-
-  MenuBarGroupButtonLabel.Color := TNavBarColors.MenuItemBackgroundSelected;
-  MenuBarGroupButtonLabel.Font.Color := TNavBarColors.MenuItemFontSelected;
-
-  LabelArrow.Color := TNavBarColors.MenuItemBackgroundSelected;
-  LabelArrow.Font.Color := TNavBarColors.MenuItemFontSelected;
+  DrawSelection;
 end;
 
 procedure TNavBarGroup.ShapeMenuBarGroupButtonMouseLeave(Sender: TObject);
 begin
-  TShape(Sender).Brush.Color := TNavBarColors.MenuItemBackground;
-  TShape(Sender).Pen.Color := TNavBarColors.MenuItemBackground;
-
-  MenuBarGroupButtonLabel.Color := TNavBarColors.MenuItemBackground;
-  MenuBarGroupButtonLabel.Font.Color := TNavBarColors.MenuItemFont;
-
-  LabelArrow.Color := TNavBarColors.MenuItemBackground;
-  LabelArrow.Font.Color := TNavBarColors.SecondaryFont;
+  HideSelection;
 end;
 
 procedure TNavBarGroup.SetExpanded(const Value: Boolean);
