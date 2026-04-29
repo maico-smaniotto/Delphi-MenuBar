@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons,
   Vcl.ExtCtrls, Vcl.StdCtrls, Menu.NavBar.Item, System.Generics.Collections,
-  Menu.NavBar.Colors;
+  Menu.NavBar.Colors, Vcl.Imaging.pngimage;
 
 type
   TNavBarItemCollection = class
@@ -28,6 +28,7 @@ type
     MenuBarGroupButtonLabel: TLabel;
     LabelArrow: TLabel;
     GroupContent: TPanel;
+    Image: TImage;
     procedure ShapeMenuBarGroupButtonMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure MenuBarGroupButtonLabelClick(Sender: TObject);
     procedure ShapeMenuBarGroupButtonMouseEnter(Sender: TObject);

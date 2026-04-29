@@ -18,7 +18,7 @@ object NavBar: TNavBar
     Height = 288
     Margins.Left = 0
     Margins.Top = 0
-    Margins.Right = 20
+    Margins.Right = 0
     Margins.Bottom = 0
     HorzScrollBar.Visible = False
     VertScrollBar.Tracking = True
@@ -26,7 +26,6 @@ object NavBar: TNavBar
     BevelOuter = bvNone
     BorderStyle = bsNone
     Color = clWhite
-    Padding.Right = 20
     ParentColor = False
     TabOrder = 0
     OnMouseWheel = ScrollNavBarMouseWheel
@@ -243,11 +242,11 @@ object NavBar: TNavBar
     end
   end
   object ScrollBar: TPanel
-    Left = 261
+    Left = 263
     Top = 93
-    Width = 20
+    Width = 18
     Height = 288
-    Anchors = [akLeft, akTop, akRight]
+    Anchors = [akTop, akRight, akBottom]
     BevelOuter = bvNone
     ParentBackground = False
     TabOrder = 5

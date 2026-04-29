@@ -31,11 +31,11 @@ implementation
 
 class procedure TNavBarColors.LoadColors;
 begin
-  FBackground := RGB(0, 0, 0);
+  FBackground := RGB(25, 25, 25);
 
   // RGB(19, 19, 24);
   // RGB(255, 255, 255);
-  FMenuItemBackground := RGB(0, 0, 0);
+  FMenuItemBackground := RGB(25, 25, 25);
 
   // RGB(28, 28, 33);
   // RGB(239, 238, 243);
